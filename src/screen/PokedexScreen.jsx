@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { getPokemonApi, getPokemonDetailByUrlApi } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
+import LoadingPopUp from "../components/loading/LoadingPopUp";
 
 export default function PokedexScreen() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   console.log(pokemons);
 
   useEffect(() => {
@@ -34,13 +36,19 @@ export default function PokedexScreen() {
       setPokemons([...pokemons, ...pokemonsArray]);
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      setError(true);
     }
   };
 
   return (
     <View>
-      <PokemonList pokemons={pokemons} />
+      {error && (
+        <LoadingPopUp error={true} text="¡Error al cargar la Pokedex!" />
+      )}
+      {loading && (
+        <LoadingPopUp error={false} text="Estamos cargando la pokedex" />
+      )}
+      {!loading && !error && <PokemonList pokemons={pokemons} />}
     </View>
   );
 }
