@@ -28,6 +28,7 @@ export default function Navigation() {
         options={{
           tabBarLabel: "",
           tabBarIcon: () => renderPokeball(),
+          headerShown: false,
         }}
       />
       <Tab.Screen
