@@ -8,7 +8,6 @@ export default function PokedexScreen() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  console.log(pokemons);
 
   useEffect(() => {
     (async () => {
