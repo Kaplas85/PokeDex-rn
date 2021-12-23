@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { getPokemonApi, getPokemonDetailByUrlApi } from "../api/pokemon";
 import PokemonList from "../components/PokemonList";
 import LoadingPopUp from "../components/loading/LoadingPopUp";
@@ -42,7 +42,7 @@ export default function PokedexScreen() {
   };
 
   return (
-    <View>
+    <View style={styles.content}>
       {error && (
         <LoadingPopUp error={true} text="¡Error al cargar la Pokedex!" />
       )}
@@ -59,3 +59,9 @@ export default function PokedexScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  content: {
+    marginTop: 35,
+  },
+});
