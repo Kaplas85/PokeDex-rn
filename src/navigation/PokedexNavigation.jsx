@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PokedexScreen from "../screen/PokedexScreen";
-import PokemonScreen from "../screen/PokemonScren";
+import PokemonScreen from "../screen/PokemonScreen";
 
 const Stack = createNativeStackNavigator();
 
