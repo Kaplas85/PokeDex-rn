@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     transform: [{ scaleX: 2 }],
   },
   content: {
+    paddingTop: 40,
     marginHorizontal: 20,
   },
   header: {
