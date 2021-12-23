@@ -8,6 +8,7 @@ export default function PokedexScreen() {
   const [pokemons, setPokemons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [nextUrl, setNextUrl] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -17,7 +18,8 @@ export default function PokedexScreen() {
 
   const loadPokemons = async () => {
     try {
-      const response = await getPokemonApi();
+      const response = await getPokemonApi(nextUrl);
+      setNextUrl(response.next);
 
       const pokemonsArray = [];
 
@@ -47,7 +49,13 @@ export default function PokedexScreen() {
       {loading && (
         <LoadingPopUp error={false} text="Estamos cargando la pokedex" />
       )}
-      {!loading && !error && <PokemonList pokemons={pokemons} />}
+      {!loading && !error && (
+        <PokemonList
+          pokemons={pokemons}
+          loadPokemons={loadPokemons}
+          isNext={nextUrl}
+        />
+      )}
     </View>
   );
 }
